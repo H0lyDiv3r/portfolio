@@ -173,8 +173,8 @@ const App = () => {
     <div className="min-h-screen bg-[#050505] text-[#e5e7eb] font-sans antialiased selection:bg-[#a4b25f]/40">
       
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-between items-center bg-[#050505]/60 backdrop-blur-md border-b border-white/[0.05]">
-        <div className="font-mono text-sm font-semibold tracking-tighter text-[#a4b25f]">YH.SYSTEMS</div>
+      <nav className="fixed top-0 w-full z-50 px-8 py-4 flex justify-end items-center bg-[#050505]/60 backdrop-blur-md border-b border-white/[0.05]">
+
         <div className="flex gap-8 items-center font-mono text-xs uppercase tracking-widest text-zinc-400">
           <a href="#hero" className="hover:text-white transition-colors">About</a>
           <a href="#tech" className="hover:text-white transition-colors">Stack</a>
