@@ -245,7 +245,7 @@ const App = () => {
         {/* 2. Tech Stack */}
         <section id="tech" className="scroll-mt-32 space-y-12">
           <div className="flex items-center justify-between border-b border-zinc-800 pb-6">
-            <h2 className="text-xs font-mono font-semibold uppercase tracking-[0.5em] text-zinc-300">_Technical / Manifest</h2>
+             <h2 className="text-xs font-mono font-semibold uppercase tracking-[0.5em] text-zinc-300">_Tech Stack</h2>
             <span className="hidden md:block text-[11px] font-mono text-zinc-500 uppercase tracking-widest">Stack_Analysis.v3</span>
           </div>
 
@@ -366,7 +366,7 @@ const App = () => {
               target="_blank"
               className="flex items-center gap-4 px-8 py-3 rounded-full border border-zinc-800 bg-[#0A0A0A] hover:bg-[#111] hover:border-[#a4b25f]/50 transition-all group"
             >
-              <span className="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-400 group-hover:text-white">See More Architecture</span>
+               <span className="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-400 group-hover:text-white">See More</span>
               <Github size={16} className="text-zinc-500 group-hover:text-[#a4b25f]" />
             </a>
           </div>
