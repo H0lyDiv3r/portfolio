@@ -289,13 +289,13 @@ const App = () => {
                     <div className="flex gap-6">
                       <span className="font-mono text-sm text-zinc-500 font-semibold">01</span>
                       <p className="text-zinc-300 text-base leading-relaxed font-normal">
-                        Leading the architectural implementation of the <span className="text-white">Telebirr Management System (TMS)</span>. Utilizing Angular for enterprise scaling and NestJS for robust backend orchestration.
+                        <span className="text-white">Telebirr Management System (TMS)</span> for managing transactions and reconciliations. Built with Angular and NestJS.
                       </p>
                     </div>
                     <div className="flex gap-6">
                       <span className="font-mono text-sm text-zinc-500 font-semibold">02</span>
                       <p className="text-zinc-300 text-base leading-relaxed font-normal">
-                        Development of <span className="text-white">IAT B2C</span> features. Focused on maintaining system integrity across high-traffic commerce channels.
+                        <span className="text-white">IAT B2C</span> features for monetary transfer system.
                       </p>
                     </div>
                   </div>
