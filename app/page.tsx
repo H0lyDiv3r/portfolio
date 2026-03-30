@@ -304,7 +304,7 @@ const App = () => {
                     <div className="space-y-2">
                       <p className="text-[12px] font-mono uppercase tracking-widest text-zinc-300 font-semibold">Internal Projects</p>
                       <p className="text-[12px] text-zinc-400 leading-relaxed italic font-normal">
-                        Proprietary e-commerce engines and financial integration frameworks.
+                        Private company projects.
                       </p>
                     </div>
                   </div>
