@@ -159,11 +159,18 @@ const App = () => {
           ))}
         </div>
 
-        {/* Header line */}
-        <div className="notebook-line" style={{ top: '112px' }} />
-
         {/* Page content */}
-        <div className="px-10 md:px-16 pt-28 pb-16" style={{ color: 'var(--ink)' }}>
+        <div className="px-10 md:px-16" style={{ color: 'var(--ink)' }}>
+          
+          {/* Header */}
+          <div className="h-16 flex items-end justify-between pb-1 border-b" style={{ borderColor: 'var(--line)' }}>
+            <span className="text-sm font-hand" style={{ color: 'var(--ink-muted)' }}>Yohannes Hailemariam&apos;s Resume</span>
+            <span className="text-sm font-hand" style={{ color: 'var(--ink-muted)' }}>
+              {new Date().getDate()}/{new Date().getMonth() + 1}/{new Date().getFullYear()} GC
+            </span>
+          </div>
+
+          <div className="pt-10 pb-4">
           
           {page === 'hero' && (
             <section className="space-y-8">
@@ -396,9 +403,10 @@ const App = () => {
             </section>
           )}
 
-          <div className="pt-12 mt-12 border-t flex flex-col md:flex-row justify-between items-center gap-4 font-hand text-sm" style={{ borderColor: 'var(--line)', color: 'var(--ink-muted)' }}>
-            <div>&copy; {new Date().getFullYear()} Hailemariam</div>
-            <div>addis ababa, ethiopia</div>
+          </div>
+
+          <div className="pt-8 mt-8 border-t pb-12 font-hand text-sm" style={{ borderColor: 'var(--line)', color: 'var(--ink-muted)' }}>
+            <div>{userData.email} — {userData.location}</div>
           </div>
 
         </div>
