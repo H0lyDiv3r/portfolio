@@ -186,21 +186,19 @@ const App = () => {
 
   return (
     <div className=" min-h-screen bg-[#1a1a1a] py-6 px-6 font-sans antialiased flex justify-center">
-      <div className="w-full min-h-full flex justify-center">
-        <div className="flex-1 max-w-3xl bg-[#f5f0e8] relative flex flex-col rounded-sm overflow-hidden">
-          <div className="binder-holes" aria-hidden="true">
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-            <span className="hole"></span>
-          </div>
-
+      <div className="relative w-3xl min-h-full flex justify-center items-center bg-red-500 py-5">
+        <div
+          className="relative left-7 h-full w-5 py-12  z-10 flex flex-col justify-between items-center gap-4 "
+          aria-hidden="true"
+        >
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div className="relative flex" key={i}>
+              <img src={"/rings.png"} className="absolute top-0 -left-15 z-10" style={{ width: "80px", height:"auto", maxWidth: "none"}}/>
+              <span className="hole absolute top-3"></span>
+            </div>
+          ))}
+        </div>
+        <div className="relative h-full flex-1 z-5 max-w-3xl bg-[#f5f0e8] flex flex-col  rounded-l-lg overflow-hidden">
           <div className=" h-full flex  ">
             {/* Page content */}
             <div
@@ -677,23 +675,45 @@ const App = () => {
           </div>
         </div>
         {/* Bookmark tabs */}
-        <div
-          className="min-h-full justify-center flex flex-col gap-1.5"
-        >
-          {bookmarks.map((bm) => (
-            <div
-              key={bm.id}
-              className={`bookmark-tab ${page === bm.id ? "active" : ""}`}
-              style={{
-                backgroundColor: page === bm.id ? bm.color : bm.muted,
-                color: page === bm.id ? bm.textActive : bm.text,
-              }}
-              onClick={() => setPage(bm.id)}
-            >
-              {bm.label}
-            </div>
-          ))}
+        <div className=" z-10  relative min-h-full justify-center items-center flex flex-col  ">
+          <div className="z-10 flex flex-col gap-1.5">
+            {bookmarks.map((bm) => (
+              <div
+                key={bm.id}
+                className={`bookmark-tab ${page === bm.id ? "active" : ""}`}
+                style={{
+                  backgroundColor: page === bm.id ? bm.color : bm.muted,
+                  color: page === bm.id ? bm.textActive : bm.text,
+                  border: `1px solid color-mix(in srgb, ${
+                    page === bm.id ? bm.color : bm.muted
+                  } 90%, black)`,
+                  borderLeft: page === bm.id ? "none" : undefined,
+                  transform:
+                    page === bm.id ? "translateX(0)" : "translateX(4px)",
+                  transition:
+                    "background-color 0.2s ease, width 0.2s ease, transform 0.2s ease, border-color 0.2s ease",
+                }}
+                onClick={() => setPage(bm.id)}
+              >
+                {bm.label}
+              </div>
+            ))}
+          </div>
+          {/*pages*/}
+          <div
+            className="absolute left-0 top-0  h-full w-4 rounded-r-lg z-0"
+
+            style={{
+              backgroundColor: "#e8e1d2",
+              backgroundImage:
+                "repeating-linear-gradient(90deg, #cfc8b8 0 1px, transparent 1px 4px)",
+              transform: "perspective(400px) rotateY(30deg)",
+              transformOrigin: "left center",
+              boxShadow: "1px 0 0 rgba(0,0,0,0.08)",
+            }}
+          ></div>
         </div>
+
       </div>
     </div>
   );
