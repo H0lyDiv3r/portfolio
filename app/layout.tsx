@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Kalam } from "next/font/google";
+import { Courier_Prime, Inter, JetBrains_Mono, Kalam } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -18,6 +18,12 @@ const kalam = Kalam({
   weight: ["300", "400", "700"],
 });
 
+const courierPrime = Courier_Prime({
+  variable: "--font-courier",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
   title: "Yohannes Hailemariam",
   description: "Full-stack software engineer based in Addis Ababa, Ethiopia.",
@@ -31,7 +37,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${jetbrainsMono.variable} ${kalam.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${kalam.variable} ${courierPrime.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Github,
   Mail,
@@ -20,18 +20,11 @@ import {
   Mic2,
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
+import { StickyNote } from "./components";
 
 const App = () => {
   const [copied, setCopied] = useState(false);
   const [page, setPage] = useState("about");
-
-  useEffect(() => {
-    const devIcons = document.createElement("link");
-    devIcons.rel = "stylesheet";
-    devIcons.href =
-      "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css";
-    document.head.appendChild(devIcons);
-  }, []);
 
   const copyToClipboard = (text: string) => {
     const el = document.createElement("textarea");
@@ -45,9 +38,38 @@ const App = () => {
   };
 
   const bookmarks = [
-    { id: "about", label: "about", color: "#e07a7a", muted: "#cfb0b0" },
-    { id: "work", label: "work", color: "#5a8db5", muted: "#8dabb8" },
-    { id: "contact", label: "contact", color: "#a070c0", muted: "#b0a0b8" },
+    {
+      id: "about",
+      label: "about",
+      color: "#C6b3ca",
+      muted: "#e5dde7",
+      text: "#776b79",
+      textActive: "#59515b",
+    },
+    {
+      id: "work",
+      label: "work",
+      color: "#84a48b",
+      muted: "#c8d6cb",
+      text: "#4f6253",
+      textActive: "#3b4a3f",
+    },
+    {
+      id: "croaqui",
+      label: "croaqui",
+      color: "#E89888",
+      muted: "#f5d1c9",
+      text: "#8b5b52",
+      textActive: "#68443d",
+    },
+    {
+      id: "contact",
+      label: "contact",
+      color: "#7bb2ba",
+      muted: "#c4dcdf",
+      text: "#4a6b70",
+      textActive: "#375054",
+    },
   ];
 
   const userData = {
@@ -62,91 +84,58 @@ const App = () => {
     techStack: [
       {
         name: "Go",
-        icon: "devicon-go-original-wordmark",
-        size: "md:col-span-3 md:row-span-2",
-        iconSize: "text-8xl",
-        brand: "#00ADD8",
-        rounded: "rounded-md",
+        sticker: "/stickers/golang.webp",
+        size: "w-28 h-28",
       },
       {
         name: "React",
-        icon: "devicon-react-original",
-        size: "md:col-span-2 md:row-span-1",
-        iconSize: "text-6xl",
-        brand: "#61DAFB",
-        rounded: "rounded-full",
+        sticker: "/stickers/react.webp",
+        size: "w-20 h-20",
       },
       {
         name: "Next.js",
-        icon: "devicon-nextjs-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#1a1a1a",
-        rounded: "rounded-md",
+        sticker: "/stickers/next.webp",
+        size: "w-16 h-16",
       },
       {
         name: "NestJS",
-        icon: "devicon-nestjs-original",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#E0234E",
-        rounded: "rounded-md",
+        sticker: "/stickers/nest.webp",
+        size: "w-16 h-16",
       },
       {
         name: "TypeScript",
-        icon: "devicon-typescript-plain",
-        size: "md:col-span-2 md:row-span-1",
-        iconSize: "text-6xl",
-        brand: "#3178C6",
-        rounded: "rounded-md",
+        sticker: "/stickers/ts.webp",
+        size: "w-20 h-20",
       },
       {
         name: "Python",
-        icon: "devicon-python-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#3776AB",
-        rounded: "rounded-full",
+        sticker: "/stickers/python.webp",
+        size: "w-16 h-16",
       },
       {
         name: "Angular",
-        icon: "devicon-angular-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#DD0031",
-        rounded: "rounded-md",
+        sticker: "/stickers/angular.webp",
+        size: "w-16 h-16",
       },
       {
         name: "SQL",
-        icon: "devicon-postgresql-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#336791",
-        rounded: "rounded-lg",
+        sticker: "/stickers/postgres.webp",
+        size: "w-16 h-16",
       },
       {
         name: "Docker",
-        icon: "devicon-docker-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#2496ED",
-        rounded: "rounded-full",
+        sticker: "/stickers/docker.webp",
+        size: "w-20 h-20",
       },
       {
         name: "Tailwind",
-        icon: "devicon-tailwindcss-original",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#06B6D4",
-        rounded: "rounded-full",
+        sticker: "/stickers/tailwind.webp",
+        size: "w-20 h-20",
       },
       {
         name: "Chakra",
-        icon: "devicon-chakraui-plain",
-        size: "md:col-span-1 md:row-span-1",
-        iconSize: "text-5xl",
-        brand: "#319795",
-        rounded: "rounded-full",
+        sticker: "/stickers/chakraui.webp",
+        size: "w-16 h-16",
       },
     ],
     projects: [
@@ -193,469 +182,517 @@ const App = () => {
     ],
   };
 
-  const postitColors = ["#fff8dc", "#fce4ec", "#d8f0dc", "#dce8f5", "#ffecd2"];
   const postitRotations = [-1, 1, -2, 2];
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] py-6 px-6 font-sans antialiased flex justify-center">
-      <div className="w-full max-w-3xl bg-[#f5f0e8] relative flex flex-col">
-        <div className="binder-holes" aria-hidden="true">
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-          <span className="hole"></span>
-        </div>
+    <div className=" min-h-screen bg-[#1a1a1a] py-6 px-6 font-sans antialiased flex justify-center">
+      <div className="w-full min-h-full flex justify-center">
+        <div className="flex-1 max-w-3xl bg-[#f5f0e8] relative flex flex-col rounded-sm overflow-hidden">
+          <div className="binder-holes" aria-hidden="true">
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+            <span className="hole"></span>
+          </div>
 
+          <div className=" h-full flex  ">
+            {/* Page content */}
+            <div
+              className=" h-full flex flex-1 flex-col justify-center"
+              style={{ color: "var(--ink)" }}
+            >
+              {/* Header */}
+              <div className="h-20 shrink-0 flex items-end justify-between px-12">
+                <span
+                  className="text-base font-hand"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  Yohannes Hailemariam&apos;s Resume
+                </span>
+                <span
+                  className="text-base font-hand"
+                  style={{ color: "var(--ink-muted)" }}
+                >
+                  {new Date().getDate()}/{new Date().getMonth() + 1}/
+                  {new Date().getFullYear()} GC
+                </span>
+              </div>
+
+              <div
+                className="
+            flex-1 px-16 bg-[var(--paper)]
+            bg-[linear-gradient(90deg,var(--margin-line)_1px,transparent_1px),repeating-linear-gradient(0deg,transparent,transparent_27px,var(--line)_27px,var(--line)_28px)]
+            bg-[position:52px_0] bg-[size:100%_28px]  relative overflow-visible z-[1] border border-[#d9d4c8]"
+              >
+                {page === "about" && (
+                  <div className="space-y-18">
+                    <section className="space-y-6 mt-6">
+                      <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+                        <div className="flex-shrink-0 -rotate-2 bg-center bg-cover">
+                          <img
+                            src="/paperPicture.png"
+                            alt="Yohannes Hailemariam"
+                            className="w-28 h-28 md:w-40 md:h-40 object-contain"
+                            style={{
+                              filter:
+                                "drop-shadow(3px 4px 4px rgba(0,0,0,0.05))",
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-3">
+                          <h1
+                            className="text-3xl md:text-4xl font-hand tracking-tight leading-tight"
+                            style={{ color: "var(--ink)" }}
+                          >
+                            {userData.name}
+                          </h1>
+
+                          <div className="flex flex-wrap gap-x-12 gap-y-4">
+                            <div>
+                              <p
+                                className="text-base font-hand"
+                                style={{ color: "var(--ink)" }}
+                              >
+                                Full-Stack @ Teleport Tech
+                              </p>
+                            </div>
+                            <div>
+                              <p
+                                className="text-base font-hand"
+                                style={{ color: "var(--ink)" }}
+                              >
+                                Mekelle Institute of Tech
+                              </p>
+                              <p
+                                className="text-base font-hand"
+                                style={{ color: "var(--ink-muted)" }}
+                              >
+                                Bsc Computer Science & Engineering —{" "}
+                                {userData.stats}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3 max-w-2xl">
+                        <p
+                          className="text-lg md:text-xl font-hand leading-relaxed"
+                          style={{ color: "var(--ink)" }}
+                        >
+                          i write go, build terminal emulators, and occasionally
+                          break my own stuff. currently shipping fintech at
+                          teleport technologies from addis ababa.
+                        </p>
+
+                        <div
+                          className="flex flex-wrap gap-x-8 gap-y-3 text-base font-hand"
+                          style={{ color: "var(--ink-muted)" }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <MapPin
+                              size={16}
+                              style={{ color: "var(--accent)" }}
+                            />
+                            <span>{userData.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <Mail
+                              size={16}
+                              style={{ color: "var(--accent)" }}
+                            />
+                            <span>{userData.email}</span>
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4 items-center">
+                          <a
+                            href={`https://github.com/${userData.github}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1 transition-colors hover:opacity-70"
+                            style={{ color: "#1a1a1a" }}
+                          >
+                            <FaGithub size={22} />
+                          </a>
+                          <a
+                            href={`https://linkedin.com/in/${userData.linkedin}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1 transition-colors hover:opacity-70"
+                            style={{ color: "#0A66C2" }}
+                          >
+                            <FaLinkedinIn size={22} />
+                          </a>
+                          <a
+                            href={`https://t.me/${userData.telegram}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1 transition-colors hover:opacity-70"
+                            style={{ color: "#26A5E4" }}
+                          >
+                            <FaTelegramPlane size={22} />
+                          </a>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section className="space-y-6 pb-6">
+                      <h2
+                        className="text-2xl font-hand"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        stuff i use
+                      </h2>
+                      <div className="flex flex-wrap gap-10 items-start pt-4 pb-8 justify-center">
+                        {userData.techStack.map((tech, idx) => {
+                          const stagger = [0, 6, 12, 4, 10, 2, 8, 14, 4, 10, 6];
+                          return (
+                            <div
+                              key={tech.name}
+                              className="flex flex-col items-center gap-1"
+                              style={{
+                                transform: `rotate(${postitRotations[idx % 4]}deg)`,
+                                marginTop: `${stagger[idx]}px`,
+                              }}
+                            >
+                              <div className={`${tech.size} leading-none`}>
+                                <img
+                                  src={tech.sticker}
+                                  alt={tech.name}
+                                  className="w-full h-full object-contain"
+                                />
+                              </div>
+                              <span className="text-sm font-hand text-[var(--ink-muted)]">
+                                {tech.name}
+                              </span>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </section>
+                  </div>
+                )}
+
+                {page === "work" && (
+                  <div className="space-y-6">
+                    <section className="space-y-4">
+                      <h2
+                        className="text-2xl font-hand"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        work
+                      </h2>
+
+                      <div className="space-y-6">
+                        <div className="space-y-2">
+                          <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
+                            <div className="space-y-1">
+                              <h3
+                                className="text-2xl font-hand"
+                                style={{ color: "var(--ink)" }}
+                              >
+                                Teleport Technologies
+                              </h3>
+                              <p
+                                className="text-base font-hand"
+                                style={{ color: "var(--ink-muted)" }}
+                              >
+                                Full-Stack Software Engineer
+                              </p>
+                            </div>
+                            <span
+                              className="text-sm font-hand"
+                              style={{ color: "var(--ink-muted)" }}
+                            >
+                              2024 — Present
+                            </span>
+                          </div>
+
+                          <div
+                            className="space-y-4 pt-3 font-hand text-base"
+                            style={{ color: "var(--ink)" }}
+                          >
+                            <p>
+                              <span>Telebirr Management System</span> —
+                              reconciling millions of Birr in daily mobile
+                              money. Angular + NestJS.
+                            </p>
+                            <p>
+                              <span>IAT B2C</span> — features for the Telebirr
+                              monetary transfer system. Because money needs to
+                              move.
+                            </p>
+                            <p
+                              className="text-sm"
+                              style={{ color: "var(--ink-muted)" }}
+                            >
+                              more internal tooling — under NDA but it serves
+                              millions of users.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </section>
+
+                    <section className="space-y-4">
+                      <h2
+                        className="text-2xl font-hand"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        projects
+                      </h2>
+                      <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[190px] gap-3">
+                        {userData.projects.map((project, idx) => (
+                          <StickyNote project={project} idx={idx} key={idx} />
+                        ))}
+                      </div>
+
+                      <div className="flex justify-center pt-2">
+                        <a
+                          href={`https://github.com/${userData.github}`}
+                          target="_blank"
+                          className="flex items-center gap-3 px-5 py-2 rounded transition-colors font-hand text-sm hover:bg-[#d9d4c8]"
+                          style={{
+                            border: "1.5px solid var(--card-border)",
+                            color: "var(--ink)",
+                          }}
+                        >
+                          more on github
+                          <Github
+                            size={14}
+                            style={{ color: "var(--accent)" }}
+                          />
+                        </a>
+                      </div>
+                    </section>
+                  </div>
+                )}
+
+                {page === "croaqui" && (
+                  <div className="space-y-6">
+                    <section className="space-y-4">
+                      <h2
+                        className="text-2xl font-hand"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        croaqui
+                      </h2>
+                      <p
+                        className="font-hand text-base"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        Linux music player. Go. React. Wails. Because everything
+                        else got in the way.
+                      </p>
+                      <div className="flex justify-center pt-2">
+                        <a
+                          href="https://github.com/H0lyDiv3r/croaqui"
+                          target="_blank"
+                          className="flex items-center gap-3 px-5 py-2 rounded transition-colors font-hand text-sm hover:bg-[#d9d4c8]"
+                          style={{
+                            border: "1.5px solid var(--card-border)",
+                            color: "var(--ink)",
+                          }}
+                        >
+                          view on github
+                          <Github
+                            size={14}
+                            style={{ color: "var(--accent)" }}
+                          />
+                        </a>
+                      </div>
+                    </section>
+                  </div>
+                )}
+
+                {page === "contact" && (
+                  <section className="space-y-4">
+                    <h2
+                      className="text-2xl font-hand"
+                      style={{ color: "var(--ink)" }}
+                    >
+                      contact
+                    </h2>
+
+                    <div className="max-w-2xl space-y-8">
+                      <div className="space-y-4">
+                        <h3
+                          className="text-2xl md:text-3xl font-hand"
+                          style={{ color: "var(--ink)" }}
+                        >
+                          let&apos;s build something.
+                        </h3>
+                        <p
+                          className="text-lg md:text-xl font-hand leading-relaxed"
+                          style={{ color: "var(--ink)" }}
+                        >
+                          i write go, build terminal emulators, and occasionally
+                          break my own stuff. currently shipping fintech at
+                          teleport technologies from addis ababa.
+                        </p>
+                        <p
+                          className="text-base font-hand"
+                          style={{ color: "var(--ink-muted)" }}
+                        >
+                          got an idea? let&apos;s talk.
+                        </p>
+                      </div>
+
+                      <div
+                        className="mx-auto max-w-lg -rotate-1 transition-all"
+                        style={{
+                          backgroundColor: "#fff8dc",
+                          boxShadow: "3px 3px 8px rgba(0,0,0,0.1)",
+                        }}
+                      >
+                        <div className="p-6 space-y-4">
+                          <div
+                            className="inline-flex items-center gap-3 py-2 px-4"
+                            style={{ backgroundColor: "rgba(122,119,48,0.08)" }}
+                          >
+                            <MessageSquare
+                              size={14}
+                              style={{ color: "var(--accent)" }}
+                            />
+                            <span
+                              className="text-sm font-hand"
+                              style={{ color: "var(--ink-muted)" }}
+                            >
+                              available for new projects
+                            </span>
+                          </div>
+
+                          <div
+                            onClick={() => copyToClipboard(userData.email)}
+                            className="group cursor-pointer flex items-center justify-between gap-4 p-3"
+                            style={{ backgroundColor: "rgba(0,0,0,0.03)" }}
+                          >
+                            <span
+                              className="text-base font-hand truncate"
+                              style={{ color: "var(--ink)" }}
+                            >
+                              {userData.email}
+                            </span>
+                            <div className="flex-shrink-0 p-2">
+                              {copied ? (
+                                <Check
+                                  size={14}
+                                  style={{ color: "var(--accent)" }}
+                                />
+                              ) : (
+                                <Copy
+                                  size={14}
+                                  style={{ color: "var(--ink-muted)" }}
+                                />
+                              )}
+                            </div>
+                          </div>
+
+                          <div
+                            className="flex items-center gap-2 text-sm font-hand"
+                            style={{ color: "var(--ink-muted)" }}
+                          >
+                            <MapPin
+                              size={14}
+                              style={{ color: "var(--accent)" }}
+                            />
+                            <span>{userData.location}</span>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-3">
+                            <a
+                              href={`https://t.me/${userData.telegram}`}
+                              target="_blank"
+                              className="flex items-center justify-center gap-2 py-2.5 px-4 transition-colors text-sm font-hand hover:bg-[#d9d4c8]"
+                              style={{
+                                color: "var(--ink)",
+                                backgroundColor: "rgba(0,0,0,0.03)",
+                              }}
+                            >
+                              <Send size={14} />
+                              Telegram
+                            </a>
+                            <a
+                              href={`https://linkedin.com/in/${userData.linkedin}`}
+                              target="_blank"
+                              className="flex items-center justify-center gap-2 py-2.5 px-4 transition-colors text-sm font-hand hover:bg-[#d9d4c8]"
+                              style={{
+                                color: "var(--ink)",
+                                backgroundColor: "rgba(0,0,0,0.03)",
+                              }}
+                            >
+                              <Linkedin size={14} />
+                              LinkedIn
+                            </a>
+                          </div>
+
+                          <a
+                            href={`https://github.com/${userData.github}`}
+                            target="_blank"
+                            className="flex items-center justify-between p-3 transition-colors hover:bg-[#d9d4c8]"
+                            style={{ backgroundColor: "rgba(0,0,0,0.03)" }}
+                          >
+                            <div
+                              className="flex items-center gap-3 text-sm font-hand"
+                              style={{ color: "var(--ink)" }}
+                            >
+                              <Github size={16} />
+                              check my github
+                            </div>
+                            <ArrowUpRight
+                              size={14}
+                              style={{ color: "var(--ink-muted)" }}
+                            />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                )}
+              </div>
+
+              <div
+                className="h-12 shrink-0 flex items-center font-hand text-sm px-12"
+                style={{ color: "var(--ink-muted)" }}
+              >
+                <div>
+                  {userData.email} — {userData.location}
+                </div>
+              </div>
+            </div>
+            {/* COLOR AT RIGHT EDGE OF PAPAER */}
+            <div
+              className="min-w-5 shrink-0"
+              style={{
+                backgroundColor: bookmarks.find((bm) => bm.id === page)?.color,
+              }}
+            />
+          </div>
+        </div>
         {/* Bookmark tabs */}
         <div
-          className="absolute flex flex-col gap-1.5"
-          style={{ left: "100%", top: "50%", transform: "translateY(-50%)" }}
+          className="min-h-full justify-center flex flex-col gap-1.5"
         >
           {bookmarks.map((bm) => (
             <div
               key={bm.id}
               className={`bookmark-tab ${page === bm.id ? "active" : ""}`}
-              style={{ backgroundColor: page === bm.id ? bm.color : bm.muted }}
+              style={{
+                backgroundColor: page === bm.id ? bm.color : bm.muted,
+                color: page === bm.id ? bm.textActive : bm.text,
+              }}
               onClick={() => setPage(bm.id)}
             >
               {bm.label}
             </div>
           ))}
-        </div>
-
-        {/* Page content */}
-        <div
-          className=" h-full flex flex-col justify-center  "
-          style={{ color: "var(--ink)" }}
-        >
-          {/* Header */}
-          <div className="h-20 shrink-0 flex items-end justify-between px-12">
-            <span
-              className="text-base font-hand"
-              style={{ color: "var(--ink-muted)" }}
-            >
-              Yohannes Hailemariam&apos;s Resume
-            </span>
-            <span
-              className="text-base font-hand"
-              style={{ color: "var(--ink-muted)" }}
-            >
-              {new Date().getDate()}/{new Date().getMonth() + 1}/
-              {new Date().getFullYear()} GC
-            </span>
-          </div>
-
-          <div className="
-            flex-1 px-16 bg-[var(--paper)]
-            bg-[linear-gradient(90deg,var(--margin-line)_1px,transparent_1px),repeating-linear-gradient(0deg,transparent,transparent_27px,var(--line)_27px,var(--line)_28px)]
-            bg-[position:52px_0] bg-[size:100%_28px]  relative overflow-visible z-[1] border border-[#d9d4c8]">
-            {page === "about" && (
-              <div className="space-y-18">
-                <section className="space-y-6 mt-6">
-                  <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-                    <div className="flex-shrink-0 -rotate-2 bg-[#f0ebe0] p-2 rounded-[3px] shadow-[2px_2px_6px_rgba(0,0,0,0.15)] border border-[#c8bfa8]">
-                      <img
-                        src="/picture.png"
-                        alt="Yohannes Hailemariam"
-                        className="w-28 h-28 md:w-40 md:h-40 object-cover rounded-[2px]"
-                      />
-                    </div>
-                    <div className="space-y-3">
-                      <h1
-                        className="text-3xl md:text-4xl font-hand tracking-tight leading-tight"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        {userData.name}
-                      </h1>
-
-                      <div className="flex flex-wrap gap-x-12 gap-y-4">
-                        <div>
-                          <p
-                            className="text-base font-hand"
-                            style={{ color: "var(--ink)" }}
-                          >
-                            Full-Stack @ Teleport Tech
-                          </p>
-                        </div>
-                        <div>
-                          <p
-                            className="text-base font-hand"
-                            style={{ color: "var(--ink)" }}
-                          >
-                            Mekelle Institute of Tech
-                          </p>
-                          <p
-                            className="text-base font-hand"
-                            style={{ color: "var(--ink-muted)" }}
-                          >
-                            Bsc Computer Science & Engineering — {userData.stats}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 max-w-2xl">
-                    <p
-                      className="text-lg md:text-xl font-hand leading-relaxed"
-                      style={{ color: "var(--ink)" }}
-                    >
-                      i write go, build terminal emulators, and occasionally
-                      break my own stuff. currently shipping fintech at teleport
-                      technologies from addis ababa.
-                    </p>
-
-                    <div
-                      className="flex flex-wrap gap-x-8 gap-y-3 text-base font-hand"
-                      style={{ color: "var(--ink-muted)" }}
-                    >
-                      <div className="flex items-center gap-2">
-                        <MapPin size={16} style={{ color: "var(--accent)" }} />
-                        <span>{userData.location}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Mail size={16} style={{ color: "var(--accent)" }} />
-                        <span>{userData.email}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex gap-4 items-center">
-                      <a
-                        href={`https://github.com/${userData.github}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1 transition-colors hover:opacity-70"
-                        style={{ color: "#1a1a1a" }}
-                      >
-                        <FaGithub size={22} />
-                      </a>
-                      <a
-                        href={`https://linkedin.com/in/${userData.linkedin}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1 transition-colors hover:opacity-70"
-                        style={{ color: "#0A66C2" }}
-                      >
-                        <FaLinkedinIn size={22} />
-                      </a>
-                      <a
-                        href={`https://t.me/${userData.telegram}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1 transition-colors hover:opacity-70"
-                        style={{ color: "#26A5E4" }}
-                      >
-                        <FaTelegramPlane size={22} />
-                      </a>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="space-y-6 pb-6">
-                  <h2
-                    className="text-2xl font-hand"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    stuff i use
-                  </h2>
-                  <div className="flex flex-wrap gap-10 items-start pt-4 pb-8 justify-center">
-                    {userData.techStack.map((tech, idx) => {
-                      const stagger = [0, 6, 12, 4, 10, 2, 8, 14, 4, 10, 6];
-                      return (
-                        <div
-                          key={tech.name}
-                          className="flex flex-col items-center gap-1"
-                          style={{
-                            transform: `rotate(${postitRotations[idx % 4]}deg)`,
-                            marginTop: `${stagger[idx]}px`,
-                          }}
-                        >
-                          <div className={`${tech.iconSize} leading-none`}>
-                            <i
-                              className={`${tech.icon}`}
-                              style={{
-                                color: tech.brand,
-                                filter: "drop-shadow(3px 0 0 #ffffff) drop-shadow(-3px 0 0 #ffffff) drop-shadow(0 3px 0 #ffffff) drop-shadow(0 -3px 0 #ffffff) drop-shadow(2px 2px 0 #ffffff) drop-shadow(-2px 2px 0 #ffffff) drop-shadow(2px -2px 0 #ffffff) drop-shadow(-2px -2px 0 #ffffff)",
-                              }}
-                            ></i>
-                          </div>
-                          <span className="text-sm font-hand text-[var(--ink-muted)]">
-                            {tech.name}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </section>
-              </div>
-            )}
-
-            {page === "work" && (
-              <div className="space-y-6">
-                <section className="space-y-4">
-                  <h2
-                    className="text-2xl font-hand"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    work
-                  </h2>
-
-                  <div className="space-y-6">
-                    <div className="space-y-2">
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
-                        <div className="space-y-1">
-                          <h3
-                            className="text-2xl font-hand"
-                            style={{ color: "var(--ink)" }}
-                          >
-                            Teleport Technologies
-                          </h3>
-                          <p
-                            className="text-base font-hand"
-                            style={{ color: "var(--ink-muted)" }}
-                          >
-                            Full-Stack Software Engineer
-                          </p>
-                        </div>
-                        <span
-                          className="text-sm font-hand"
-                          style={{ color: "var(--ink-muted)" }}
-                        >
-                          2024 — Present
-                        </span>
-                      </div>
-
-                      <div className="space-y-4 pt-3 font-hand text-base" style={{ color: "var(--ink)" }}>
-                        <p>
-                          <span>Telebirr Management System</span> —
-                          reconciling millions of Birr in daily mobile money.
-                          Angular + NestJS.
-                        </p>
-                        <p>
-                          <span>IAT B2C</span> — features for the Telebirr
-                          monetary transfer system. Because money needs to
-                          move.
-                        </p>
-                        <p className="text-sm" style={{ color: "var(--ink-muted)" }}>
-                          more internal tooling — under NDA but it serves millions of users.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section className="space-y-4">
-                  <h2
-                    className="text-2xl font-hand"
-                    style={{ color: "var(--ink)" }}
-                  >
-                    projects
-                  </h2>
-                  <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[190px] gap-3">
-                    {userData.projects.map((project, idx) => (
-                      <a
-                        key={idx}
-                        href={project.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`${project.grid} group relative flex flex-col p-4 transition-all cursor-pointer`}
-                        style={{
-                          backgroundColor: postitColors[idx % 5],
-                          transform: `rotate(${postitRotations[idx % 4]}deg)`,
-                          boxShadow: "3px 3px 8px rgba(0,0,0,0.1)",
-                        }}
-                      >
-                        <div className="flex justify-between items-start mb-auto">
-                          <span className="text-[var(--ink-muted)]">
-                            {project.icon}
-                          </span>
-                          <ArrowUpRight
-                            className="text-[var(--ink-muted)]"
-                            size={16}
-                          />
-                        </div>
-
-                        <div className="space-y-1">
-                          <h4
-                            className="text-lg font-hand"
-                            style={{ color: "var(--ink)" }}
-                          >
-                            {project.title}
-                          </h4>
-                          <p
-                            className="text-sm font-hand leading-relaxed"
-                            style={{ color: "var(--ink-muted)" }}
-                          >
-                            {project.desc}
-                          </p>
-
-                          <div className="flex gap-3 flex-wrap pt-1">
-                            {project.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-sm font-hand"
-                                style={{ color: "var(--ink-muted)" }}
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-
-                  <div className="flex justify-center pt-2">
-                    <a
-                      href={`https://github.com/${userData.github}`}
-                      target="_blank"
-                      className="flex items-center gap-3 px-5 py-2 rounded transition-colors font-hand text-sm hover:bg-[#d9d4c8]"
-                      style={{
-                        border: "1.5px solid var(--card-border)",
-                        color: "var(--ink)",
-                      }}
-                    >
-                      more on github
-                      <Github size={14} style={{ color: "var(--accent)" }} />
-                    </a>
-                  </div>
-                </section>
-              </div>
-            )}
-
-            {page === "contact" && (
-              <section className="space-y-4">
-                <h2
-                  className="text-2xl font-hand"
-                  style={{ color: "var(--ink)" }}
-                >
-                  contact
-                </h2>
-
-                <div className="max-w-2xl space-y-8">
-                  <div className="space-y-4">
-                    <h3
-                      className="text-2xl md:text-3xl font-hand"
-                      style={{ color: "var(--ink)" }}
-                    >
-                      let&apos;s build something.
-                    </h3>
-                    <p
-                      className="text-lg md:text-xl font-hand leading-relaxed"
-                      style={{ color: "var(--ink)" }}
-                    >
-                      i write go, build terminal emulators, and occasionally
-                      break my own stuff. currently shipping fintech at teleport
-                      technologies from addis ababa.
-                    </p>
-                    <p
-                      className="text-base font-hand"
-                      style={{ color: "var(--ink-muted)" }}
-                    >
-                      got an idea? let&apos;s talk.
-                    </p>
-                  </div>
-
-                  <div
-                    className="mx-auto max-w-lg -rotate-1 transition-all"
-                    style={{
-                      backgroundColor: "#fff8dc",
-                      boxShadow: "3px 3px 8px rgba(0,0,0,0.1)",
-                    }}
-                  >
-                    <div className="p-6 space-y-4">
-                      <div className="inline-flex items-center gap-3 py-2 px-4"
-                        style={{ backgroundColor: "rgba(122,119,48,0.08)" }}
-                      >
-                        <MessageSquare size={14} style={{ color: "var(--accent)" }} />
-                        <span className="text-sm font-hand" style={{ color: "var(--ink-muted)" }}>
-                          available for new projects
-                        </span>
-                      </div>
-
-                      <div
-                        onClick={() => copyToClipboard(userData.email)}
-                        className="group cursor-pointer flex items-center justify-between gap-4 p-3"
-                        style={{ backgroundColor: "rgba(0,0,0,0.03)" }}
-                      >
-                        <span
-                          className="text-base font-hand truncate"
-                          style={{ color: "var(--ink)" }}
-                        >
-                          {userData.email}
-                        </span>
-                        <div className="flex-shrink-0 p-2">
-                          {copied ? (
-                            <Check size={14} style={{ color: "var(--accent)" }} />
-                          ) : (
-                            <Copy size={14} style={{ color: "var(--ink-muted)" }} />
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-2 text-sm font-hand" style={{ color: "var(--ink-muted)" }}>
-                        <MapPin size={14} style={{ color: "var(--accent)" }} />
-                        <span>{userData.location}</span>
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-3">
-                        <a
-                          href={`https://t.me/${userData.telegram}`}
-                          target="_blank"
-                          className="flex items-center justify-center gap-2 py-2.5 px-4 transition-colors text-sm font-hand hover:bg-[#d9d4c8]"
-                          style={{ color: "var(--ink)", backgroundColor: "rgba(0,0,0,0.03)" }}
-                        >
-                          <Send size={14} />
-                          Telegram
-                        </a>
-                        <a
-                          href={`https://linkedin.com/in/${userData.linkedin}`}
-                          target="_blank"
-                          className="flex items-center justify-center gap-2 py-2.5 px-4 transition-colors text-sm font-hand hover:bg-[#d9d4c8]"
-                          style={{ color: "var(--ink)", backgroundColor: "rgba(0,0,0,0.03)" }}
-                        >
-                          <Linkedin size={14} />
-                          LinkedIn
-                        </a>
-                      </div>
-
-                      <a
-                        href={`https://github.com/${userData.github}`}
-                        target="_blank"
-                        className="flex items-center justify-between p-3 transition-colors hover:bg-[#d9d4c8]"
-                        style={{ backgroundColor: "rgba(0,0,0,0.03)" }}
-                      >
-                        <div
-                          className="flex items-center gap-3 text-sm font-hand"
-                          style={{ color: "var(--ink)" }}
-                        >
-                          <Github size={16} />
-                          check my github
-                        </div>
-                        <ArrowUpRight size={14} style={{ color: "var(--ink-muted)" }} />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </section>
-            )}
-
-          </div>
-
-          <div
-            className="h-12 shrink-0 flex items-center font-hand text-sm px-12"
-            style={{ color: "var(--ink-muted)" }}
-          >
-            <div>
-              {userData.email} — {userData.location}
-            </div>
-          </div>
         </div>
       </div>
     </div>
