@@ -186,7 +186,7 @@ const App = () => {
 
   return (
     <div className=" min-h-screen bg-[#1a1a1a] py-6 px-6 font-sans antialiased flex justify-center">
-      <div className="relative w-3xl min-h-full flex justify-center items-center bg-red-500 py-5">
+      <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.png')] bg-center bg-fill bg-no-repeat rounded-2xl">
         <div
           className="relative left-7 h-full w-5 py-12  z-10 flex flex-col justify-between items-center gap-4 "
           aria-hidden="true"
@@ -348,19 +348,17 @@ const App = () => {
                       >
                         stuff i use
                       </h2>
-                      <div className="flex flex-wrap gap-10 items-start pt-4 pb-8 justify-center">
+                      <div className="grid grid-cols-6 gap-x-4 gap-y-3 justify-items-center pt-1 pb-2">
                         {userData.techStack.map((tech, idx) => {
-                          const stagger = [0, 6, 12, 4, 10, 2, 8, 14, 4, 10, 6];
                           return (
                             <div
                               key={tech.name}
                               className="flex flex-col items-center gap-1"
                               style={{
                                 transform: `rotate(${postitRotations[idx % 4]}deg)`,
-                                marginTop: `${stagger[idx]}px`,
                               }}
                             >
-                              <div className={`${tech.size} leading-none`}>
+                              <div className="w-14 h-14 leading-none">
                                 <img
                                   src={tech.sticker}
                                   alt={tech.name}
