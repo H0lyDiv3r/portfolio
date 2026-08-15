@@ -20,7 +20,7 @@ import {
   Mic2,
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
-import { StickyNote } from "./components";
+import { ScribbleButton, StickyNote } from "./components";
 
 const App = () => {
   const [copied, setCopied] = useState(false);
@@ -185,7 +185,33 @@ const App = () => {
   const postitRotations = [-1, 1, -2, 2];
 
   return (
-    <div className=" min-h-screen bg-[#1a1a1a] py-6 px-6 font-sans antialiased flex justify-center">
+    <div
+      className="relative min-h-screen py-6 px-6 font-sans antialiased flex justify-center"
+      style={{
+        backgroundColor: "#0c1c33",
+      }}
+    >
+      <div
+        className="absolute inset-6 pointer-events-none"
+        style={{
+          border: "1.5px solid rgba(120,180,255,0.3)",
+        }}
+        aria-hidden="true"
+      >
+        <div
+          className="absolute inset-2"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(120,180,255,0.15) 2px, transparent 2px),
+              linear-gradient(90deg, rgba(120,180,255,0.15) 2px, transparent 2px),
+              linear-gradient(rgba(120,180,255,0.05) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(120,180,255,0.05) 1px, transparent 1px)
+            `,
+            backgroundSize: "100px 100px, 100px 100px, 20px 20px, 20px 20px",
+            backgroundPosition: "-2px -2px, -2px -2px, -1px -1px, -1px -1px",
+          }}
+        ></div>
+      </div>
       <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.png')] bg-center bg-fill bg-no-repeat rounded-2xl">
         <div
           className="relative left-7 h-full w-5 py-12  z-10 flex flex-col justify-between items-center gap-4 "
@@ -314,28 +340,40 @@ const App = () => {
                             href={`https://github.com/${userData.github}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1 transition-colors hover:opacity-70"
-                            style={{ color: "#1a1a1a" }}
+                            className="group relative p-2 flex items-center justify-center transition-colors text-[#1a1a1a] hover:text-[var(--paper)]"
                           >
-                            <FaGithub size={22} />
+                            <img
+                              src="/scribbles/scribbleFilled1.png"
+                              alt=""
+                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            />
+                            <FaGithub size={28} className="relative" />
                           </a>
                           <a
                             href={`https://linkedin.com/in/${userData.linkedin}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1 transition-colors hover:opacity-70"
-                            style={{ color: "#0A66C2" }}
+                            className="group relative p-2 flex items-center justify-center transition-colors text-[#0A66C2] hover:text-[var(--paper)]"
                           >
-                            <FaLinkedinIn size={22} />
+                            <img
+                              src="/scribbles/scribbleFilled2.png"
+                              alt=""
+                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            />
+                            <FaLinkedinIn size={28} className="relative" />
                           </a>
                           <a
                             href={`https://t.me/${userData.telegram}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-1 transition-colors hover:opacity-70"
-                            style={{ color: "#26A5E4" }}
+                            className="group relative p-2 flex items-center justify-center transition-colors text-[#26A5E4] hover:text-[var(--paper)]"
                           >
-                            <FaTelegramPlane size={22} />
+                            <img
+                              src="/scribbles/scribbleFilled1.png"
+                              alt=""
+                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                            />
+                            <FaTelegramPlane size={28} className="relative" />
                           </a>
                         </div>
                       </div>
@@ -451,21 +489,14 @@ const App = () => {
                       </div>
 
                       <div className="flex justify-center pt-2">
-                        <a
+                        <ScribbleButton
                           href={`https://github.com/${userData.github}`}
-                          target="_blank"
-                          className="flex items-center gap-3 px-5 py-2 rounded transition-colors font-hand text-sm hover:bg-[#d9d4c8]"
-                          style={{
-                            border: "1.5px solid var(--card-border)",
-                            color: "var(--ink)",
-                          }}
+                          emptyScribble="/scribbles/scribbleEmpty1.png"
+                          filledScribble="/scribbles/scribbleFilled3.png"
+                          accent="var(--accent)"
                         >
                           more on github
-                          <Github
-                            size={14}
-                            style={{ color: "var(--accent)" }}
-                          />
-                        </a>
+                        </ScribbleButton>
                       </div>
                     </section>
                   </div>
@@ -488,21 +519,14 @@ const App = () => {
                         else got in the way.
                       </p>
                       <div className="flex justify-center pt-2">
-                        <a
+                        <ScribbleButton
                           href="https://github.com/H0lyDiv3r/croaqui"
-                          target="_blank"
-                          className="flex items-center gap-3 px-5 py-2 rounded transition-colors font-hand text-sm hover:bg-[#d9d4c8]"
-                          style={{
-                            border: "1.5px solid var(--card-border)",
-                            color: "var(--ink)",
-                          }}
+                          emptyScribble="/scribbles/scribbleEmpty1.png"
+                          filledScribble="/scribbles/scribbleFilled3.png"
+                          accent="var(--accent)"
                         >
                           view on github
-                          <Github
-                            size={14}
-                            style={{ color: "var(--accent)" }}
-                          />
-                        </a>
+                        </ScribbleButton>
                       </div>
                     </section>
                   </div>
