@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Project } from "../types";
 
@@ -8,6 +9,7 @@ export const StickyNote = ({
   project: Project;
   idx: number;
 }) => {
+  const [hovered, setHovered] = useState(false);
   const postitRotations = [-1, 1, -2, 2];
 
   const postItColors = [
@@ -24,6 +26,9 @@ export const StickyNote = ({
     "#E0F2FE", // faded sky blue
     "#FDF2F8",
   ];
+
+  const color = postItColors[idx % 6];
+
   return (
     <>
       <a
@@ -32,12 +37,35 @@ export const StickyNote = ({
         rel="noopener noreferrer"
         className={`${project.grid} group relative flex flex-col p-4 transition-all cursor-pointer`}
         style={{
-          backgroundColor: postItColors[idx % 6],
-
+          background: hovered
+            ? `linear-gradient(to bottom,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 0%,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 14%,
+            ${color} 16%,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 100%)`
+            : `linear-gradient(to bottom,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 0%,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 14%,
+            color-mix(in srgb, ${color} 80%, white 20%) 16%,
+            oklch(from ${color} calc(l * 0.97) calc(c * 1.15) h) 100%)`,
+          transition: "background 0.2s ease",
           transform: `rotate(${postitRotations[idx % 4]}deg)`,
-          boxShadow: "0px 4px 2px rgba(0,0,0,0.1)",
+          border: `0.5px solid color-mix(in srgb, ${color} 85%, black 15%)`,
+          borderRadius: "6px",
         }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
+        <div
+          className="absolute inset-x-0 bottom-0 pointer-events-none"
+          style={{
+            top: "14%",
+            boxShadow: hovered
+              ? "0 1px 2px rgba(0,0,0,0.15)"
+              : "0 11px 17px -6px rgba(0,0,0,0.25)",
+            transition: "box-shadow 0.2s ease",
+          }}
+        />
         <div className="flex justify-between items-start mb-auto">
           <span className="text-[var(--ink-muted)]">{project.icon}</span>
           <ArrowUpRight className="text-[var(--ink-muted)]" size={16} />

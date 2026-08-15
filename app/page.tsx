@@ -25,6 +25,7 @@ import { ScribbleButton, StickyNote } from "./components";
 const App = () => {
   const [copied, setCopied] = useState(false);
   const [page, setPage] = useState("about");
+  const [contactHovered, setContactHovered] = useState(false);
 
   const copyToClipboard = (text: string) => {
     const el = document.createElement("textarea");
@@ -153,7 +154,7 @@ const App = () => {
         url: "https://github.com/H0lyDiv3r/croaqui",
         icon: <Music size={18} />,
         tags: ["Go", "React", "Wails"],
-        grid: "md:col-span-2 md:row-span-1",
+        grid: "md:col-span-3 md:row-span-1",
       },
       {
         title: "Medusa Storefront",
@@ -566,12 +567,36 @@ const App = () => {
                       </div>
 
                       <div
-                        className="mx-auto max-w-lg -rotate-1 transition-all"
+                        className="mx-auto max-w-lg -rotate-1 relative transition-all"
                         style={{
-                          backgroundColor: "#fff8dc",
-                          boxShadow: "3px 3px 8px rgba(0,0,0,0.1)",
+                          background: contactHovered
+                            ? `linear-gradient(to bottom,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 0%,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 14%,
+                            #fff8dc 16%,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 100%)`
+                            : `linear-gradient(to bottom,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 0%,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 14%,
+                            color-mix(in srgb, #fff8dc 80%, white 20%) 16%,
+                            oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 100%)`,
+                          transition: "background 0.2s ease",
+                          border: "0.5px solid color-mix(in srgb, #fff8dc 85%, black 15%)",
+                          borderRadius: "6px",
                         }}
+                        onMouseEnter={() => setContactHovered(true)}
+                        onMouseLeave={() => setContactHovered(false)}
                       >
+                        <div
+                          className="absolute inset-x-0 bottom-0 pointer-events-none"
+                          style={{
+                            top: "14%",
+                            boxShadow: contactHovered
+                              ? "0 1px 2px rgba(0,0,0,0.15)"
+                              : "0 11px 17px -6px rgba(0,0,0,0.25)",
+                            transition: "box-shadow 0.2s ease",
+                          }}
+                        />
                         <div className="p-6 space-y-4">
                           <div
                             className="inline-flex items-center gap-3 py-2 px-4"
