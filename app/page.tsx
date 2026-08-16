@@ -22,6 +22,15 @@ import {
 import { FaGithub, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
 import { ScribbleButton, StickyNote } from "./components";
 
+const githubMask =
+  '[mask-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20496%20512%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M165.9%20397.4c0%202-2.3%203.6-5.2%203.6-3.3.3-5.6-1.3-5.6-3.6%200-2%202.3-3.6%205.2-3.6%203-.3%205.6%201.3%205.6%203.6zm-31.1-4.5c-.7%202%201.3%204.3%204.3%204.9%202.6%201%205.6%200%206.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2%202.3zm44.2-1.7c-2.9.7-4.9%202.6-4.6%204.9.3%202%202.9%203.3%205.9%202.6%202.9-.7%204.9-2.6%204.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8%208C106.1%208%200%20113.3%200%20252c0%20110.9%2069.8%20205.8%20169.5%20239.2%2012.8%202.3%2017.3-5.6%2017.3-12.1%200-6.2-.3-40.4-.3-61.4%200%200-70%2015-84.7-29.8%200%200-11.4-29.1-27.8-36.6%200%200-22.9-15.7%201.6-15.4%200%200%2024.9%202%2038.6%2025.8%2021.9%2038.6%2058.6%2027.5%2072.9%2020.9%202.3-16%208.8-27.1%2016-33.7-55.9-6.2-112.3-14.3-112.3-110.5%200-27.5%207.6-41.3%2023.6-58.9-2.6-6.5-11.1-33.3%202.6-67.9%2020.9-6.5%2069%2027%2069%2027%2020-5.6%2041.5-8.5%2062.8-8.5s42.8%202.9%2062.8%208.5c0%200%2048.1-33.6%2069-27%2013.7%2034.7%205.2%2061.4%202.6%2067.9%2016%2017.7%2025.8%2031.5%2025.8%2058.9%200%2096.5-58.9%20104.2-114.8%20110.5%209.2%207.9%2017%2022.9%2017%2046.4%200%2033.7-.3%2075.4-.3%2083.6%200%206.5%204.6%2014.4%2017.3%2012.1C428.2%20457.8%20496%20362.9%20496%20252%20496%20113.3%20383.5%208%20244.8%208zM97.2%20352.9c-1.3%201-1%203.3.7%205.2%201.6%201.6%203.9%202.3%205.2%201%201.3-1%201-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7%201.3.3%202.9%202.3%203.9%201.6%201%203.6.7%204.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4%2035.6c-1.6%201.3-1%204.3%201.3%206.2%202.3%202.3%205.2%202.6%206.5%201%201.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6%201-1.6%203.6%200%205.9%201.6%202.3%204.3%203.3%205.6%202.3%201.6-1.3%201.6-3.9%200-6.2-1.4-2.3-4-3.3-5.6-2z%22%2F%3E%3C%2Fsvg%3E")] [mask-repeat:no-repeat] [mask-size:100%_100%] [mask-position:center]';
+
+const linkedinMask =
+  '[mask-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M100.28%20448H7.4V148.9h92.88zM53.79%20108.1C24.09%20108.1%200%2083.5%200%2053.8a53.79%2053.79%200%200%201%20107.58%200c0%2029.7-24.1%2054.3-53.79%2054.3zM447.9%20448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29%200-55.69%2037.7-55.69%2076.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5%2042.69-48.3%2087.88-48.3%2094%200%20111.28%2061.9%20111.28%20142.3V448z%22%2F%3E%3C%2Fsvg%3E")] [mask-repeat:no-repeat] [mask-size:100%_100%] [mask-position:center]';
+
+const telegramMask =
+  '[mask-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M446.7%2098.6l-67.6%20318.8c-5.1%2022.5-18.4%2028.1-37.3%2017.5l-103-75.9-49.7%2047.8c-5.5%205.5-10.1%2010.1-20.7%2010.1l7.4-104.9%20190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8%20284%2016.2%20252.2c-22.1-6.9-22.5-22.1%204.6-32.7L418.2%2066.4c18.4-6.9%2034.5%204.1%2028.5%2032.2z%22%2F%3E%3C%2Fsvg%3E")]';
+
 const App = () => {
   const [copied, setCopied] = useState(false);
   const [page, setPage] = useState("about");
@@ -213,7 +222,7 @@ const App = () => {
           }}
         ></div>
       </div>
-      <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.png')] bg-center bg-fill bg-no-repeat rounded-2xl">
+      <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.png')] bg-top bg-cover bg-no-repeat rounded-2xl">
         <div
           className="relative left-7 h-full w-5 py-12  z-10 flex flex-col justify-between items-center gap-4 "
           aria-hidden="true"
@@ -341,40 +350,52 @@ const App = () => {
                             href={`https://github.com/${userData.github}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center transition-colors text-[#1a1a1a] hover:text-[var(--paper)]"
+                            className="group relative p-2 flex items-center justify-center text-[#1a1a1a]"
                           >
-                            <img
-                              src="/scribbles/scribbleFilled1.png"
-                              alt=""
-                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                            />
-                            <FaGithub size={28} className="relative" />
+                            <span className="relative w-7 h-7 flex items-center justify-center">
+                              <FaGithub
+                                size={28}
+                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+                              />
+                              <span
+                                aria-hidden
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${githubMask}`}
+                              />
+                            </span>
                           </a>
                           <a
                             href={`https://linkedin.com/in/${userData.linkedin}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center transition-colors text-[#0A66C2] hover:text-[var(--paper)]"
+                            className="group relative p-2 flex items-center justify-center text-[#0A66C2]"
                           >
-                            <img
-                              src="/scribbles/scribbleFilled2.png"
-                              alt=""
-                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                            />
-                            <FaLinkedinIn size={28} className="relative" />
+                            <span className="relative w-7 h-7 flex items-center justify-center">
+                              <FaLinkedinIn
+                                size={28}
+                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+                              />
+                              <span
+                                aria-hidden
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${linkedinMask}`}
+                              />
+                            </span>
                           </a>
                           <a
                             href={`https://t.me/${userData.telegram}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center transition-colors text-[#26A5E4] hover:text-[var(--paper)]"
+                            className="group relative p-2 flex items-center justify-center text-[#26A5E4]"
                           >
-                            <img
-                              src="/scribbles/scribbleFilled1.png"
-                              alt=""
-                              className="absolute inset-0 w-full h-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                            />
-                            <FaTelegramPlane size={28} className="relative" />
+                            <span className="relative w-7 h-7 flex items-center justify-center">
+                              <FaTelegramPlane
+                                size={28}
+                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+                              />
+                              <span
+                                aria-hidden
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${telegramMask}`}
+                              />
+                            </span>
                           </a>
                         </div>
                       </div>
@@ -748,7 +769,7 @@ const App = () => {
           </div>
           {/*pages*/}
           <div
-            className="absolute left-0 top-0  h-full w-4 rounded-r-lg z-0"
+            className="absolute left-0 top-0  h-full w-3 rounded-r-lg z-0"
 
             style={{
               backgroundColor: "#e8e1d2",
