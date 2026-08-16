@@ -3,6 +3,8 @@ import {
   cloneElement,
   isValidElement,
   useState,
+  type CSSProperties,
+  type ReactElement,
   type ReactNode,
 } from "react";
 
@@ -54,11 +56,14 @@ export const ScribbleButton = ({
       <span className="relative flex items-center gap-3">
         {Children.map(children, (child) =>
           isValidElement(child)
-            ? cloneElement(child, {
-                style: {
-                  color: hovered ? "var(--paper)" : accent,
-                },
-              })
+            ? cloneElement(
+                child as ReactElement<{ style?: CSSProperties }>,
+                {
+                  style: {
+                    color: hovered ? "var(--paper)" : accent,
+                  },
+                }
+              )
             : child
         )}
       </span>

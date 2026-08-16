@@ -482,21 +482,13 @@ const App = () => {
                             style={{ color: "var(--ink)" }}
                           >
                             <p>
-                              <span>Telebirr Management System</span> —
-                              reconciling millions of Birr in daily mobile
-                              money. Angular + NestJS.
-                            </p>
-                            <p>
-                              <span>IAT B2C</span> — features for the Telebirr
-                              monetary transfer system. Because money needs to
-                              move.
-                            </p>
-                            <p
-                              className="text-sm"
-                              style={{ color: "var(--ink-muted)" }}
-                            >
-                              more internal tooling — under NDA but it serves
-                              millions of users.
+                              Spent my time building and shipping a wide range
+                              of full-stack systems across the fintech
+                              space — handling everything from the frontend
+                              experience down to the API layer, and picking up
+                              whatever pieces needed to exist in between.
+                              Complicated projects, distributed systems,
+                              tight deadlines — the usual.
                             </p>
                           </div>
                         </div>
