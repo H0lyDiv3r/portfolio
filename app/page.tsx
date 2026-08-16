@@ -222,7 +222,7 @@ const App = () => {
           }}
         ></div>
       </div>
-      <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.png')] bg-top bg-cover bg-no-repeat rounded-2xl">
+      <div className="relative w-3xl min-h-full flex justify-center items-center py-3 bg-[url('/backFace.webp')] bg-top bg-cover bg-no-repeat rounded-2xl">
         <div
           className="relative left-7 h-full w-5 py-12  z-10 flex flex-col justify-between items-center gap-4 "
           aria-hidden="true"
@@ -230,7 +230,7 @@ const App = () => {
           {Array.from({ length: 20 }).map((_, i) => (
             <div className="relative flex" key={i}>
               <img
-                src={"/rings.png"}
+                src={"/rings.webp"}
                 className="absolute top-0 -left-15 z-10"
                 style={{ width: "80px", height: "auto", maxWidth: "none" }}
               />
@@ -363,7 +363,7 @@ const App = () => {
                               />
                               <span
                                 aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${githubMask}`}
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${githubMask}`}
                               />
                             </span>
                           </a>
@@ -380,7 +380,7 @@ const App = () => {
                               />
                               <span
                                 aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${linkedinMask}`}
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${linkedinMask}`}
                               />
                             </span>
                           </a>
@@ -397,7 +397,7 @@ const App = () => {
                               />
                               <span
                                 aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.png')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${telegramMask}`}
+                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${telegramMask}`}
                               />
                             </span>
                           </a>
@@ -408,7 +408,7 @@ const App = () => {
                     <section className="relative space-y-6 pb-6">
                       <h2 className="absolute -top-2 left-0 z-10 rotate-2">
                         <img
-                          src="/scribbles/texts/techStack.png"
+                          src="/scribbles/texts/techStack.webp"
                           alt="stuff i use"
                           className="w-60 h-auto opacity-85"
                         />
@@ -446,7 +446,7 @@ const App = () => {
                     <section className="relative space-y-4">
                       <h2 className="absolute -top-2 left-0 z-10 rotate-2">
                         <img
-                          src="/scribbles/texts/works.png"
+                          src="/scribbles/texts/works.webp"
                           alt="work"
                           className="w-40 h-auto opacity-85"
                         />
@@ -498,7 +498,7 @@ const App = () => {
                     <section className="relative space-y-4">
                       <h2 className="absolute -top-2 left-0 z-10 -rotate-2">
                         <img
-                          src="/scribbles/texts/projects.png"
+                          src="/scribbles/texts/projects.webp"
                           alt="projects"
                           className="w-40 h-auto opacity-85"
                         />
@@ -512,8 +512,8 @@ const App = () => {
                       <div className="flex justify-center pt-2">
                         <ScribbleButton
                           href={`https://github.com/${userData.github}`}
-                          emptyScribble="/scribbles/scribbleEmpty1.png"
-                          filledScribble="/scribbles/scribbleFilled3.png"
+                          emptyScribble="/scribbles/scribbleEmpty1.webp"
+                          filledScribble="/scribbles/scribbleFilled3.webp"
                           accent="var(--accent)"
                         >
                           more on github
@@ -528,7 +528,7 @@ const App = () => {
                     <section className="space-y-4">
                       <h2>
                         <img
-                          src="/scribbles/texts/croaqui.png"
+                          src="/scribbles/texts/croaqui.webp"
                           alt="croaqui"
                           className="w-40 h-auto opacity-85"
                         />
@@ -543,8 +543,8 @@ const App = () => {
                       <div className="flex justify-center pt-2">
                         <ScribbleButton
                           href="https://github.com/H0lyDiv3r/croaqui"
-                          emptyScribble="/scribbles/scribbleEmpty1.png"
-                          filledScribble="/scribbles/scribbleFilled3.png"
+                          emptyScribble="/scribbles/scribbleEmpty1.webp"
+                          filledScribble="/scribbles/scribbleFilled3.webp"
                           accent="var(--accent)"
                         >
                           view on github
@@ -558,7 +558,7 @@ const App = () => {
                   <section className="space-y-4">
                     <h2>
                       <img
-                        src="/scribbles/texts/contacts.png"
+                        src="/scribbles/texts/contacts.webp"
                         alt="contact"
                         className="w-40 h-auto opacity-85"
                       />
