@@ -229,7 +229,11 @@ const App = () => {
         >
           {Array.from({ length: 20 }).map((_, i) => (
             <div className="relative flex" key={i}>
-              <img src={"/rings.png"} className="absolute top-0 -left-15 z-10" style={{ width: "80px", height:"auto", maxWidth: "none"}}/>
+              <img
+                src={"/rings.png"}
+                className="absolute top-0 -left-15 z-10"
+                style={{ width: "80px", height: "auto", maxWidth: "none" }}
+              />
               <span className="hole absolute top-3"></span>
             </div>
           ))}
@@ -265,7 +269,7 @@ const App = () => {
             bg-[position:52px_0] bg-[size:100%_28px]  relative overflow-visible z-[1] border border-[#d9d4c8]"
               >
                 {page === "about" && (
-                  <div className="space-y-18">
+                  <div className="space-y-6">
                     <section className="space-y-6 mt-6">
                       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
                         <div className="flex-shrink-0 -rotate-2 bg-center bg-cover">
@@ -401,14 +405,15 @@ const App = () => {
                       </div>
                     </section>
 
-                    <section className="space-y-6 pb-6">
-                      <h2
-                        className="text-2xl font-hand"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        stuff i use
+                    <section className="relative space-y-6 pb-6">
+                      <h2 className="absolute -top-2 left-0 z-10 rotate-2">
+                        <img
+                          src="/scribbles/texts/techStack.png"
+                          alt="stuff i use"
+                          className="w-60 h-auto opacity-85"
+                        />
                       </h2>
-                      <div className="grid grid-cols-6 gap-x-4 gap-y-3 justify-items-center pt-1 pb-2">
+                      <div className="grid grid-cols-6 gap-x-6 gap-y-4 justify-items-center pt-40 pb-2">
                         {userData.techStack.map((tech, idx) => {
                           return (
                             <div
@@ -438,15 +443,16 @@ const App = () => {
 
                 {page === "work" && (
                   <div className="space-y-6">
-                    <section className="space-y-4">
-                      <h2
-                        className="text-2xl font-hand"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        work
+                    <section className="relative space-y-4">
+                      <h2 className="absolute -top-2 left-0 z-10 rotate-2">
+                        <img
+                          src="/scribbles/texts/works.png"
+                          alt="work"
+                          className="w-40 h-auto opacity-85"
+                        />
                       </h2>
 
-                      <div className="space-y-6">
+                      <div className="space-y-6 pt-16">
                         <div className="space-y-2">
                           <div className="flex flex-col md:flex-row md:justify-between md:items-baseline gap-2">
                             <div className="space-y-1">
@@ -497,14 +503,15 @@ const App = () => {
                       </div>
                     </section>
 
-                    <section className="space-y-4">
-                      <h2
-                        className="text-2xl font-hand"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        projects
+                    <section className="relative space-y-4">
+                      <h2 className="absolute -top-2 left-0 z-10 -rotate-2">
+                        <img
+                          src="/scribbles/texts/projects.png"
+                          alt="projects"
+                          className="w-40 h-auto opacity-85"
+                        />
                       </h2>
-                      <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[190px] gap-3">
+                      <div className="grid grid-cols-1 md:grid-cols-6 auto-rows-[190px] gap-3 pt-16">
                         {userData.projects.map((project, idx) => (
                           <StickyNote project={project} idx={idx} key={idx} />
                         ))}
@@ -527,11 +534,12 @@ const App = () => {
                 {page === "croaqui" && (
                   <div className="space-y-6">
                     <section className="space-y-4">
-                      <h2
-                        className="text-2xl font-hand"
-                        style={{ color: "var(--ink)" }}
-                      >
-                        croaqui
+                      <h2>
+                        <img
+                          src="/scribbles/texts/croaqui.png"
+                          alt="croaqui"
+                          className="w-40 h-auto opacity-85"
+                        />
                       </h2>
                       <p
                         className="font-hand text-base"
@@ -556,11 +564,12 @@ const App = () => {
 
                 {page === "contact" && (
                   <section className="space-y-4">
-                    <h2
-                      className="text-2xl font-hand"
-                      style={{ color: "var(--ink)" }}
-                    >
-                      contact
+                    <h2>
+                      <img
+                        src="/scribbles/texts/contacts.png"
+                        alt="contact"
+                        className="w-40 h-auto opacity-85"
+                      />
                     </h2>
 
                     <div className="max-w-2xl space-y-8">
@@ -602,7 +611,8 @@ const App = () => {
                             color-mix(in srgb, #fff8dc 80%, white 20%) 16%,
                             oklch(from #fff8dc calc(l * 0.97) calc(c * 1.15) h) 100%)`,
                           transition: "background 0.2s ease",
-                          border: "0.5px solid color-mix(in srgb, #fff8dc 85%, black 15%)",
+                          border:
+                            "0.5px solid color-mix(in srgb, #fff8dc 85%, black 15%)",
                           borderRadius: "6px",
                         }}
                         onMouseEnter={() => setContactHovered(true)}
@@ -781,7 +791,6 @@ const App = () => {
             }}
           ></div>
         </div>
-
       </div>
     </div>
   );
