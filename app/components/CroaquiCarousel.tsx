@@ -44,6 +44,15 @@ export const CroaquiCarousel = ({
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose, prev, next]);
 
+  useEffect(() => {
+    const onWheel = (e: WheelEvent) => {
+      if (e.deltaY < 0) prev();
+      else next();
+    };
+    window.addEventListener("wheel", onWheel, { passive: true });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, [prev, next]);
+
   const photo = photos[index];
 
   return createPortal(
@@ -118,10 +127,11 @@ export const CroaquiCarousel = ({
             <button
               key={p.src}
               onClick={() => setIndex(i)}
-              className="transition-all duration-200 cursor-pointer"
+              className="bg-white p-1 pb-3 transition-all duration-200 cursor-pointer"
               style={{
-                opacity: i === index ? 1 : 0.45,
-                transform: i === index ? "scale(1.15)" : "scale(1)",
+                opacity: i === index ? 1 : 0.55,
+                transform: i === index ? "scale(1.2)" : "scale(1)",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.35)",
               }}
               aria-label={p.caption}
               aria-current={i === index ? "true" : undefined}
@@ -129,11 +139,7 @@ export const CroaquiCarousel = ({
               <img
                 src={p.src}
                 alt=""
-                className="w-14 h-10 object-cover border-2"
-                style={{
-                  borderColor:
-                    i === index ? "var(--paper)" : "transparent",
-                }}
+                className="w-14 h-10 object-cover"
               />
             </button>
           ))}
