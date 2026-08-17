@@ -406,7 +406,7 @@ const App = () => {
                     </section>
 
                     <section className="relative space-y-6 pb-6">
-                      <h2 className="absolute -top-2 left-0 z-10 rotate-2">
+                      <h2 className="absolute -top-2 left-0 z-10 rotate-2 pointer-events-none">
                         <img
                           src="/scribbles/texts/techStack.webp"
                           alt="stuff i use"
@@ -444,7 +444,7 @@ const App = () => {
                 {page === "work" && (
                   <div className="space-y-6">
                     <section className="relative space-y-4">
-                      <h2 className="absolute -top-2 left-0 z-10 rotate-2">
+                      <h2 className="absolute -top-2 left-0 z-10 rotate-2 pointer-events-none">
                         <img
                           src="/scribbles/texts/works.webp"
                           alt="work"
@@ -496,7 +496,7 @@ const App = () => {
                     </section>
 
                     <section className="relative space-y-4">
-                      <h2 className="absolute -top-2 left-0 z-10 -rotate-2">
+                      <h2 className="absolute -top-2 left-0 z-10 -rotate-2 pointer-events-none">
                         <img
                           src="/scribbles/texts/projects.webp"
                           alt="projects"
@@ -526,7 +526,7 @@ const App = () => {
                 {page === "croaqui" && (
                   <div className="space-y-6">
                     <section className="space-y-4">
-                      <h2>
+                      <h2 className="pointer-events-none">
                         <img
                           src="/scribbles/texts/croaqui.webp"
                           alt="croaqui"
@@ -556,9 +556,9 @@ const App = () => {
 
                 {page === "contact" && (
                   <section className="space-y-4">
-                    <h2>
-                      <img
-                        src="/scribbles/texts/contacts.webp"
+<h2 className="pointer-events-none">
+                        <img
+                          src="/scribbles/texts/contacts.webp"
                         alt="contact"
                         className="w-40 h-auto opacity-85"
                       />

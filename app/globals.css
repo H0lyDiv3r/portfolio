@@ -19,12 +19,26 @@
   --font-courier: var(--font-courier), "Courier New", Courier, monospace;
 }
 
+html {
+  cursor: url("/effects/CursorWithPaperCursor.png") 2 4, auto;
+}
+
+a,
+a *,
+button,
+button *,
+.bookmark-tab,
+.bookmark-tab *,
+.cursor-pointer,
+.cursor-pointer * {
+  cursor: url("/effects/PointerWithPaperCursor.png") 14 1, pointer;
+}
+
 /* Bookmark tab */
 .bookmark-tab {
   width: 38px;
   padding: 12px 0;
   border-radius: 0 8px 8px 0;
-  cursor: pointer;
   transition: background-color 0.2s ease, width 0.2s ease;
   display: flex;
   align-items: center;

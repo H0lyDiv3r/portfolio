@@ -25,10 +25,11 @@ export const ScribbleButton = ({
 
   return (
     <a
+
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="relative flex items-center justify-center px-8 py-3 font-hand text-base"
+      className="relative flex items-center justify-center px-8 py-3 font-hand text-base cursor-pointer"
       style={{
         color: hovered ? "var(--paper)" : "var(--ink)",
         fontWeight: hovered ? 700 : 400,
