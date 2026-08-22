@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Github,
   Mail,
@@ -8,16 +8,14 @@ import {
   MapPin,
   Terminal,
   Music,
-  ArrowUpRight,
-  MessageSquare,
   ShoppingBag,
   Layers,
-  Send,
+  Key,
   Check,
   Copy,
-  Globe,
-  Key,
-  Mic2,
+  ArrowUpRight,
+  MessageSquare,
+  Send,
 } from "lucide-react";
 import { FaGithub, FaLinkedinIn, FaTelegramPlane } from "react-icons/fa";
 import { ScribbleButton, StickyNote, CroaquiScrapbook } from "./components";
@@ -31,10 +29,85 @@ const linkedinMask =
 const telegramMask =
   '[mask-image:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20448%20512%22%3E%3Cpath%20fill%3D%22black%22%20d%3D%22M446.7%2098.6l-67.6%20318.8c-5.1%2022.5-18.4%2028.1-37.3%2017.5l-103-75.9-49.7%2047.8c-5.5%205.5-10.1%2010.1-20.7%2010.1l7.4-104.9%20190.9-172.5c8.3-7.4-1.8-11.5-12.9-4.1L117.8%20284%2016.2%20252.2c-22.1-6.9-22.5-22.1%204.6-32.7L418.2%2066.4c18.4-6.9%2034.5%204.1%2028.5%2032.2z%22%2F%3E%3C%2Fsvg%3E")]';
 
+const pageIds = ["about", "work", "croaqui", "contact"];
+
+const SocialLinks = ({ userData }: { userData: { github: string; linkedin: string; telegram: string } }) => (
+  <div className="flex gap-4 items-center">
+    <a
+      href={`https://github.com/${userData.github}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative p-2 flex items-center justify-center text-[#1a1a1a]"
+    >
+      <span className="relative w-7 h-7 flex items-center justify-center">
+        <FaGithub
+          size={28}
+          className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+        />
+        <span
+          aria-hidden
+          className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${githubMask}`}
+        />
+      </span>
+    </a>
+    <a
+      href={`https://linkedin.com/in/${userData.linkedin}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative p-2 flex items-center justify-center text-[#0A66C2]"
+    >
+      <span className="relative w-7 h-7 flex items-center justify-center">
+        <FaLinkedinIn
+          size={28}
+          className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+        />
+        <span
+          aria-hidden
+          className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${linkedinMask}`}
+        />
+      </span>
+    </a>
+    <a
+      href={`https://t.me/${userData.telegram}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group relative p-2 flex items-center justify-center text-[#26A5E4]"
+    >
+      <span className="relative w-7 h-7 flex items-center justify-center">
+        <FaTelegramPlane
+          size={28}
+          className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
+        />
+        <span
+          aria-hidden
+          className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${telegramMask}`}
+        />
+      </span>
+    </a>
+  </div>
+);
+
 const App = () => {
   const [copied, setCopied] = useState(false);
-  const [page, setPage] = useState("about");
+  const [page, setPageState] = useState("about");
   const [contactHovered, setContactHovered] = useState(false);
+
+  const setPage = (id: string) => {
+    setPageState(id);
+    if (window.location.hash.slice(1) !== id) {
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
+
+  useEffect(() => {
+    const applyHash = () => {
+      const h = window.location.hash.slice(1);
+      setPageState(pageIds.includes(h) ? h : "about");
+    };
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+    return () => window.removeEventListener("hashchange", applyHash);
+  }, []);
 
   const copyToClipboard = (text: string) => {
     const el = document.createElement("textarea");
@@ -91,67 +164,73 @@ const App = () => {
     telegram: "H0lyDiv3r",
     twitter: "yohannes_hm",
     stats: "GPA: 3.74",
-    techStack: [
+    techStack: ([
       {
         name: "Go",
         sticker: "/stickers/golang.webp",
-        size: "w-28 h-28",
+        size: "w-12 h-12",
       },
       {
         name: "React",
         sticker: "/stickers/react.webp",
-        size: "w-20 h-20",
+        size: "w-12 h-12",
+      },
+      {
+        name: "Wails",
+        sticker: "/stickers/Wails.png",
+        size: "w-full h-10",
+        span: "col-span-2",
       },
       {
         name: "Next.js",
         sticker: "/stickers/next.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
       {
         name: "NestJS",
         sticker: "/stickers/nest.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
       {
         name: "TypeScript",
         sticker: "/stickers/ts.webp",
-        size: "w-20 h-20",
+        size: "w-12 h-12",
       },
       {
         name: "Python",
         sticker: "/stickers/python.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
       {
         name: "Angular",
         sticker: "/stickers/angular.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
       {
         name: "SQL",
         sticker: "/stickers/postgres.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
       {
         name: "Docker",
         sticker: "/stickers/docker.webp",
-        size: "w-20 h-20",
+        size: "w-12 h-12",
       },
       {
         name: "Tailwind",
         sticker: "/stickers/tailwind.webp",
-        size: "w-20 h-20",
+        size: "w-12 h-12",
       },
       {
         name: "Chakra",
         sticker: "/stickers/chakraui.webp",
-        size: "w-16 h-16",
+        size: "w-12 h-12",
       },
-    ],
+    ] as { name: string; sticker: string; size: string; span?: string }[]),
     projects: [
       {
         title: "Turtle Terminal",
-        desc: "Terminal emulator from scratch. Custom ANSI parser, GPU rendering. Because I wanted one that's mine.",
+        desc: "Terminal emulator With Rust & React. Worked on the frontend including the ANSI code parser",
         url: "https://github.com/tars-terminal/turtle",
         icon: <Terminal size={18} />,
         tags: ["React", "Chakra-UI"],
@@ -159,7 +238,7 @@ const App = () => {
       },
       {
         title: "Croaqui",
-        desc: "Linux music player. Go. React. Wails. Because everything else got in the way.",
+        desc: "A Desktop Music player for linux built on top of MPV and Libtag",
         url: "https://github.com/H0lyDiv3r/croaqui",
         icon: <Music size={18} />,
         tags: ["Go", "React", "Wails"],
@@ -167,7 +246,7 @@ const App = () => {
       },
       {
         title: "Medusa Storefront",
-        desc: "E-commerce frontend for Medusa headless. Clean. Fast. Does the job.",
+        desc: "E-commerce frontend for Medusa headless with stripe and chapa integration",
         url: "https://github.com/H0lyDiv3r/medusa-store-front",
         icon: <ShoppingBag size={18} />,
         tags: ["Next.js", "Tailwind"],
@@ -175,7 +254,7 @@ const App = () => {
       },
       {
         title: "Go-Web",
-        desc: "Frontend framework in Go that compiles to Wasm. Asking 'what if' until something breaks.",
+        desc: "Frontend framework built with Go that compiles to Wasm. write the code in Go and display in a Browser",
         url: "https://github.com/H0lyDiv3r/go-web",
         icon: <Layers size={18} />,
         tags: ["Go", "Wasm"],
@@ -183,7 +262,7 @@ const App = () => {
       },
       {
         title: "License Server",
-        desc: "License server implementation with Go, Chi, Wails and Stripe payment.",
+        desc: "License server implementation for a desktop app that forces license renewal even offline",
         url: "https://github.com/H0lyDiv3r/license-server",
         icon: <Key size={18} />,
         tags: ["Go", "Chi", "Wails", "Stripe"],
@@ -269,8 +348,8 @@ const App = () => {
             bg-[position:52px_0] bg-[size:100%_28px]  relative overflow-visible z-[1] border border-[#d9d4c8]"
               >
                 {page === "about" && (
-                  <div className="space-y-6">
-                    <section className="space-y-6 mt-6">
+                  <div className="space-y-4">
+                    <section className="space-y-6 mt-4">
                       <div className="flex flex-col md:flex-row gap-4 md:gap-6">
                         <div className="flex-shrink-0 -rotate-2 bg-center bg-cover">
                           <img
@@ -292,27 +371,18 @@ const App = () => {
                           </h1>
 
                           <div className="flex flex-wrap gap-x-12 gap-y-4">
-                            <div>
+                            <div className="flex flex-col gap-4">
                               <p
-                                className="text-base font-hand"
+                                className="text-base font-hand gap-6"
                                 style={{ color: "var(--ink)" }}
                               >
                                 Full-Stack @ Teleport Tech
                               </p>
-                            </div>
-                            <div>
                               <p
-                                className="text-base font-hand"
+                                className="text-base font-hand gap-6"
                                 style={{ color: "var(--ink)" }}
                               >
-                                Mekelle Institute of Tech
-                              </p>
-                              <p
-                                className="text-base font-hand"
-                                style={{ color: "var(--ink-muted)" }}
-                              >
-                                Bsc Computer Science & Engineering —{" "}
-                                {userData.stats}
+                                Desktop developer (Go+Wails) @ Home
                               </p>
                             </div>
                           </div>
@@ -324,10 +394,34 @@ const App = () => {
                           className="text-lg md:text-xl font-hand leading-relaxed"
                           style={{ color: "var(--ink)" }}
                         >
-                          i write go, build terminal emulators, and occasionally
-                          break my own stuff. currently shipping fintech at
-                          teleport technologies from addis ababa.
+                          I am a full stack developer working at
+                          <a
+                            href="https://vionet.tech/#"
+                            className="text-blue-600"
+                          >
+                            Vionet
+                          </a>{" "}
+                          (formerly{" "}
+                          <span className="text-red-400">
+                            Teleport technologies
+                          </span>
+                          ) with a passion for learning new things (Tech or
+                          otherwise)
                         </p>
+                        <div>
+                          <p
+                            className="text-base font-hand"
+                            style={{ color: "var(--ink)" }}
+                          >
+                            Mekelle Institute of Technology
+                          </p>
+                          <p
+                            className="text-base font-hand"
+                            style={{ color: "var(--ink-muted)" }}
+                          >
+                            Bsc Computer Science & Engineering
+                          </p>
+                        </div>
 
                         <div
                           className="flex flex-wrap gap-x-8 gap-y-3 text-base font-hand"
@@ -349,63 +443,11 @@ const App = () => {
                           </div>
                         </div>
 
-                        <div className="flex gap-4 items-center">
-                          <a
-                            href={`https://github.com/${userData.github}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center text-[#1a1a1a]"
-                          >
-                            <span className="relative w-7 h-7 flex items-center justify-center">
-                              <FaGithub
-                                size={28}
-                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
-                              />
-                              <span
-                                aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${githubMask}`}
-                              />
-                            </span>
-                          </a>
-                          <a
-                            href={`https://linkedin.com/in/${userData.linkedin}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center text-[#0A66C2]"
-                          >
-                            <span className="relative w-7 h-7 flex items-center justify-center">
-                              <FaLinkedinIn
-                                size={28}
-                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
-                              />
-                              <span
-                                aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${linkedinMask}`}
-                              />
-                            </span>
-                          </a>
-                          <a
-                            href={`https://t.me/${userData.telegram}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="group relative p-2 flex items-center justify-center text-[#26A5E4]"
-                          >
-                            <span className="relative w-7 h-7 flex items-center justify-center">
-                              <FaTelegramPlane
-                                size={28}
-                                className="transition-all duration-300 group-hover:scale-110 group-hover:opacity-0"
-                              />
-                              <span
-                                aria-hidden
-                                className={`absolute inset-0 w-7 h-7 opacity-0 transition-opacity duration-300 group-hover:opacity-100 [background-image:url('/scribbles/scribbleFilledSquare1.webp')] [background-size:200%_200%] [background-position:center] [background-repeat:no-repeat] ${telegramMask}`}
-                              />
-                            </span>
-                          </a>
-                        </div>
+                        <SocialLinks userData={userData} />
                       </div>
                     </section>
 
-                    <section className="relative space-y-6 pb-6">
+                    <section className="relative space-y-6 pb-2">
                       <h2 className="absolute -top-2 left-0 z-10 rotate-2 pointer-events-none">
                         <img
                           src="/scribbles/texts/techStack.webp"
@@ -413,17 +455,19 @@ const App = () => {
                           className="w-60 h-auto opacity-85"
                         />
                       </h2>
-                      <div className="grid grid-cols-6 gap-x-6 gap-y-4 justify-items-center pt-40 pb-2">
+                      <div className="grid grid-cols-6 gap-x-6 gap-y-2 justify-items-center pt-36 pb-1">
                         {userData.techStack.map((tech, idx) => {
                           return (
                             <div
                               key={tech.name}
-                              className="flex flex-col items-center gap-1"
+                              className={`flex flex-col items-center gap-1 justify-self-center ${tech.span ?? ""}`}
                               style={{
                                 transform: `rotate(${postitRotations[idx % 4]}deg)`,
                               }}
                             >
-                              <div className="w-14 h-14 leading-none">
+                              <div
+                                className={`${tech.size} leading-none`}
+                              >
                                 <img
                                   src={tech.sticker}
                                   alt={tech.name}
@@ -460,7 +504,7 @@ const App = () => {
                                 className="text-2xl font-hand"
                                 style={{ color: "var(--ink)" }}
                               >
-                                Teleport Technologies
+                                Vionet ( Formerly Teleport Technologies )
                               </h3>
                               <p
                                 className="text-base font-hand"
@@ -482,13 +526,13 @@ const App = () => {
                             style={{ color: "var(--ink)" }}
                           >
                             <p>
-                              Spent my time building and shipping a wide range
-                              of full-stack systems across the fintech
-                              space — handling everything from the frontend
-                              experience down to the API layer, and picking up
-                              whatever pieces needed to exist in between.
-                              Complicated projects, distributed systems,
-                              tight deadlines — the usual.
+                              I have been working (and Growing) with Vionet as a
+                              full-stack developer Since 2024 taking part in
+                              multiple projects colaborating with small teams to
+                              deliver high quality software products.
+                            </p>
+                            <p>
+                              worked with Angular, Nestjs and Nextjs.
                             </p>
                           </div>
                         </div>
@@ -526,38 +570,23 @@ const App = () => {
                 {page === "croaqui" && <CroaquiScrapbook />}
 
                 {page === "contact" && (
-                  <section className="space-y-4">
-<h2 className="pointer-events-none">
-                        <img
-                          src="/scribbles/texts/contacts.webp"
+                  <section className="space-y-6 mt-6">
+                    <h2 className="pointer-events-none">
+                      <img
+                        src="/scribbles/texts/contacts.webp"
                         alt="contact"
                         className="w-40 h-auto opacity-85"
                       />
                     </h2>
 
-                    <div className="max-w-2xl space-y-8">
-                      <div className="space-y-4">
-                        <h3
-                          className="text-2xl md:text-3xl font-hand"
-                          style={{ color: "var(--ink)" }}
-                        >
-                          let&apos;s build something.
-                        </h3>
-                        <p
-                          className="text-lg md:text-xl font-hand leading-relaxed"
-                          style={{ color: "var(--ink)" }}
-                        >
-                          i write go, build terminal emulators, and occasionally
-                          break my own stuff. currently shipping fintech at
-                          teleport technologies from addis ababa.
-                        </p>
-                        <p
-                          className="text-base font-hand"
-                          style={{ color: "var(--ink-muted)" }}
-                        >
-                          got an idea? let&apos;s talk.
-                        </p>
-                      </div>
+                    <div className="space-y-6 max-w-2xl">
+                      <p
+                        className="text-lg md:text-xl font-hand leading-relaxed"
+                        style={{ color: "var(--ink)" }}
+                      >
+                        got an idea, a project, or just want to talk shop? my
+                        inbox is always open.
+                      </p>
 
                       <div
                         className="mx-auto max-w-lg -rotate-1 relative transition-all"
@@ -734,8 +763,7 @@ const App = () => {
                   transition:
                     "background-color 0.2s ease, width 0.2s ease, transform 0.2s ease, border-color 0.2s ease",
                 }}
-                onClick={() => setPage(bm.id)}
-              >
+                onClick={() => setPage(bm.id)}              >
                 {bm.label}
               </div>
             ))}

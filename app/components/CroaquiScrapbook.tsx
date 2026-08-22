@@ -3,13 +3,18 @@ import { ScribbleButton } from "./ScribbleButton";
 import { CroaquiCarousel } from "./CroaquiCarousel";
 import { croaquiPhotos, CroaquiPhoto } from "../data/croaqui";
 
+import type { ReactNode } from "react";
+
 type Row = {
   photoIndex: number;
   rotate: number;
   imageOn: "left" | "right";
-  text: string;
+  text: ReactNode;
   title?: boolean;
 };
+
+const liClass =
+  "[list-style:none] [background-image:url('/scribbles/liScribble.png')] [background-size:12px_12px] [background-position:left_center] [background-repeat:no-repeat] pl-6";
 
 const rows: Row[] = [
   {
@@ -17,19 +22,61 @@ const rows: Row[] = [
     rotate: -1.5,
     imageOn: "right",
     title: true,
-    text: "Linux music player. Go. React. Wails. Because everything else got in the way.",
+    text: (
+      <div className="text-sm flex flex-col justify-between gap-2">
+        <p>dedicated to my favourite personal project.</p>
+        <ul className="space-y-1">
+          <li className={liClass}>
+            cross platform music player built with Go, Wails and React
+          </li>
+          <li className={liClass}>
+            MPV for audio playback, taglib for metadata
+          </li>
+          <li className={liClass}>
+            uses CGO to communicate with system MPV and taglib
+          </li>
+        </ul>
+      </div>
+    ),
   },
   {
     photoIndex: 2,
     rotate: 1.5,
     imageOn: "left",
-    text: "point it at your music folder once and it figures out the rest.",
+    text: (
+      <div className="text-sm flex flex-col gap-2">
+        <p>point it at your music folder once and it figures out the rest.</p>
+        <ul className="space-y-1">
+          <li className={liClass}>albums</li>
+          <li className={liClass}>metadata parsing</li>
+          <li className={liClass}>playlists</li>
+          <li className={liClass}>mini player</li>
+        </ul>
+        <p>
+          plays a wide range of audio formats, thanks to mpv&apos;s extensive
+          codec support.
+        </p>
+      </div>
+    ),
   },
   {
     photoIndex: 7,
     rotate: 1.5,
     imageOn: "right",
-    text: "the mini player stays out of the way until you need it.",
+    text: (
+      <div className="text-base flex flex-col gap-2">
+        <img
+          src="/scribbles/Loading.png"
+          alt="loading"
+          className="w-40 h-auto opacity-85"
+        />
+        <p>currently in the works: peer-to-peer audio streaming.</p>
+        <p>
+          stream tracks straight from your library to someone else&apos;s
+          player — no server in between.
+        </p>
+      </div>
+    ),
   },
 ];
 
@@ -70,9 +117,9 @@ const ImageCard = ({
   </figure>
 );
 
-const TextCell = ({ row }: { row: Row }) => (
-  <section className="space-y-1 self-center">
-    {row.title && (
+const TextCell = ({ row }: { row: Row }) =>
+  row.title ? (
+    <section className="sm:h-full flex flex-col justify-start space-y-1">
       <h2 className="pointer-events-none">
         <img
           src="/scribbles/texts/croaqui.webp"
@@ -80,22 +127,30 @@ const TextCell = ({ row }: { row: Row }) => (
           className="w-40 h-auto opacity-85"
         />
       </h2>
-    )}
-    <p
-      className="font-hand text-base leading-relaxed"
-      style={{ color: row.title ? "var(--ink)" : "var(--ink-muted)" }}
-    >
-      {row.text}
-    </p>
-  </section>
-);
+      <div
+        className="font-hand text-base leading-relaxed"
+        style={{ color: "var(--ink)" }}
+      >
+        {row.text}
+      </div>
+    </section>
+  ) : (
+    <section className="space-y-1 self-center">
+      <div
+        className="font-hand text-base leading-relaxed"
+        style={{ color: "var(--ink-muted)" }}
+      >
+        {row.text}
+      </div>
+    </section>
+  );
 
 export const CroaquiScrapbook = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
     <div className="space-y-2">
-      {/* 3 rows — image columns alternate right, left, right */}
+      {/* feature rows — image columns alternate right, left, right, left */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-2 gap-y-4 items-stretch">
         {rows.map((row, idx) =>
           row.imageOn === "right" ? (
@@ -118,7 +173,7 @@ export const CroaquiScrapbook = () => {
               />
               <TextCell row={row} />
             </Fragment>
-          )
+          ),
         )}
       </div>
 
